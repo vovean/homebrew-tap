@@ -1,6 +1,6 @@
 cask "ccmux" do
-  version "1.1"
-  sha256 "d0ddffea1fe4501ba66dd29058fa2d4b9a98c617fe1ac29750d1f498a06ba4eb"
+  version "1.1.1"
+  sha256 "6d56f257c87ab9d010ef8245f31cb9fb2779b6b3db807f687d53628b3506f3be"
 
   url "https://github.com/vovean/ccmux/releases/download/v#{version}/ccmux-#{version}-arm64.zip",
       verified: "github.com/vovean/ccmux/"
@@ -26,9 +26,13 @@ cask "ccmux" do
                    sudo: false
   end
 
+  # No `delete:` for the app. Homebrew runs the uninstall stanza before removing the
+  # `app` artifact, so deleting the bundle here pulls it out from under that step and the
+  # upgrade aborts with the old version already gone — leaving no app, a dangling binary
+  # symlink, and brew still recording the previous version. The `app` stanza removes the
+  # bundle and `binary` is unlinked automatically.
   uninstall launchctl: "io.vovean.ccmux",
-            quit:      "io.vovean.ccmux",
-            delete:    "#{appdir}/ccmux.app"
+            quit:      "io.vovean.ccmux"
 
   # Accounts, sessions and usage live here; credentials are in the Keychain and are
   # deliberately not removed by zap, since they are shared with a reinstall.

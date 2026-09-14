@@ -1,6 +1,6 @@
 cask "ccmux" do
-  version "1.17"
-  sha256 "dd5a8b6ec2069c4ff4db899bd69c18bd52be29b36ab29630300e3e90b9a73a6e"
+  version "1.18"
+  sha256 "9c5732da30e0690cfce12599cbc9a947fccc7d24316462e016992f194e3dc9a3"
 
   url "https://github.com/vovean/ccmux/releases/download/v#{version}/ccmux-#{version}-arm64.zip",
       verified: "github.com/vovean/ccmux/"
